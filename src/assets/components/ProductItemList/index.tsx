@@ -13,8 +13,10 @@ const ProductItemList = ({ children }: ProductItemListProps) => {
         </S.ProductItemListHeaderTitle>
         <S.ProductItemListHeaderSelect>
           <option value="default">Selecione a mesa</option>
-          <option value="">Mesa</option>
-          <option value="">Delivery</option>
+          <option value="">01</option>
+          <option value="">02</option>
+          <option value="">03</option>
+          <option value="">04</option>
         </S.ProductItemListHeaderSelect>
       </S.ProductItemListHeader>
       <S.ProductItemList>
