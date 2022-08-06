@@ -8,16 +8,24 @@ import { DateTime } from "luxon";
 import OrderDetails from "assets/components/OrderDetails";
 import Overlay from "assets/components/Overlay";
 import CheckoutSection from "assets/components/CheckoutSection";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
     ...DateTime.DATE_SHORT,
     weekday: "long",
   });
+  const navigate = useNavigate();
+  const handleNavigation = (path: RoutePath) => navigate(path);
 
   return (
     <S.Home>
-      <Menu active={RoutePath.HOME} navItems={navigationItems} />
+      <Menu
+        active={RoutePath.HOME}
+        navItems={navigationItems}
+        onNavigate={handleNavigation}
+        onLogout={() => navigate(RoutePath.LOGIN)}
+      />
       <S.HomeContent>
         <header>
           <S.HomeHeaderDetails>

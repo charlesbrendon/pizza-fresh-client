@@ -7,9 +7,11 @@ import { NavItem } from "./types";
 interface MenuProps {
 	active: RoutePath;
 	navItems: NavItem[];
+	onNavigate: (data: RoutePath) => void;
+    onLogout: () => void;
   } 
 
-const Menu = ({ active, navItems }: MenuProps) => {
+const Menu = ({active, navItems, onNavigate, onLogout}:MenuProps) => {
 	return (
 		<S.Menu>
 			<nav>
