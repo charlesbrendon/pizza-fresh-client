@@ -2,6 +2,7 @@ import * as S from "./style";
 import ButtonToggle from "../ButtonToggle";
 import OrderItemList from "../OrderItemList";
 import ButtonLarge from "../ButtonLarge";
+import OrderItem from "../OrderItem";
 
 const OrderDetails = () => {
   return (
@@ -21,7 +22,7 @@ const OrderDetails = () => {
               <h4>Preço</h4>
             </S.OrderDetailsListTitle>
           }
-          list={"Lista de Itens"}
+          list={<OrderItem />} // <-
           footer={
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
