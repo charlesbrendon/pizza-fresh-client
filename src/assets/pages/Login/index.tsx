@@ -1,4 +1,4 @@
-import BoxLogin from "../../components/Menu/BoxLogin";
+import BoxLogin from "../../components/BoxLogin";
 import * as S from "./style";
 
 const Login = () => {
