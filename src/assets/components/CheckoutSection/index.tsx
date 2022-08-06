@@ -1,3 +1,4 @@
+import OrderConfirmation from "assets/components/OrderConfirmation";
 import * as S from "./style";
 
 const CheckoutSection = () => {
@@ -5,7 +6,7 @@ const CheckoutSection = () => {
     <S.CheckoutSection closing={false}>
       <S.CheckoutSectionConfirmation>
         <S.BackIcon />
-        {"Componente OrderConfirmation"}
+        <OrderConfirmation />
       </S.CheckoutSectionConfirmation>
       <S.CheckoutSectionPayment>
         <S.CheckoutSectionPaymentHead>Pagamento</S.CheckoutSectionPaymentHead>
@@ -28,7 +29,7 @@ const CheckoutSection = () => {
                   type="text"
                   name="titular"
                   id="titular"
-                  placeholder="Marcus Silva"
+                  placeholder="Charles Brendon"
                 />
               </S.PaymentFormGroup>
 
@@ -38,7 +39,7 @@ const CheckoutSection = () => {
                   type="text"
                   name="card"
                   id="card"
-                  placeholder="5369 7644 5393 3165"
+                  placeholder="5369 7854 5454 3154"
                 />
               </S.PaymentFormGroup>
 
