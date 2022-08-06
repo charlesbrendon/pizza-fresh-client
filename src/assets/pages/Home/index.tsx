@@ -5,6 +5,7 @@ import { RoutePath } from "types/routes";
 import { navigationItems } from "../../data/navigation";
 import ProductItemList from "../../components/ProductItemList";
 import { DateTime } from "luxon";
+import OrderDetails from "../../components/OrderDetails";
 
 const Home = () => {
 
@@ -42,7 +43,7 @@ const Home = () => {
 				</div>
 			</S.HomeContent>
 			<aside>
-				<p>Detalhes dos pedidos aqui</p>
+			<OrderDetails />
 			</aside>
 		</S.Home>
 	);
