@@ -3,6 +3,7 @@ import Menu from "assets/components/Menu";
 import { navigationItems } from "assets/data/navigation";
 import { Outlet } from "react-router-dom";
 import * as S from "./style";
+import NavColumn from "assets/components/NavColumn";
 
 const Settings = () => {
   return (
@@ -14,7 +15,7 @@ const Settings = () => {
         </header>
         <S.SettingsContent>
           <S.SettingsContentSidebar>
-            {"Componente NavColumn"}
+          <NavColumn />
           </S.SettingsContentSidebar>
           <S.SettingsContentBox>
             <S.SettingsContentBoxEmpty>
