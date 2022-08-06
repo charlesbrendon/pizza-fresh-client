@@ -6,47 +6,49 @@ import { navigationItems } from "../../data/navigation";
 import ProductItemList from "../../components/ProductItemList";
 import { DateTime } from "luxon";
 import OrderDetails from "../../components/OrderDetails";
+import Overlay from "../../components/Overlay";
 
 const Home = () => {
+  const dateDescription = DateTime.now().toLocaleString({
+    ...DateTime.DATE_SHORT,
+    weekday: "long",
+  });
 
-	const dateDescription = DateTime.now().toLocaleString({
-		...DateTime.DATE_SHORT,
-		weekday: "long",
-	  });
+  return (
+    <S.Home>
+      <Menu active={RoutePath.HOME} navItems={navigationItems} />
+      <S.HomeContent>
+        <header>
+          <S.HomeHeaderDetails>
+            <div>
+              <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
+              <S.HomeHeaderDetailsDate>
+                {dateDescription}
+              </S.HomeHeaderDetailsDate>
+            </div>
+            <S.HomeHeaderDetailsSearch>
+              <Search />
+              <input type="text" placeholder="Procure pelo sabor" />
+            </S.HomeHeaderDetailsSearch>
+          </S.HomeHeaderDetails>
+        </header>
+        <div>
+          <S.HomeProductTitle>
+            <b>Pizzas</b>
+          </S.HomeProductTitle>
+          <S.HomeProductList>
+            <ProductItemList children={undefined}></ProductItemList>
+          </S.HomeProductList>
+        </div>
+      </S.HomeContent>
+      <aside>
+        <OrderDetails />
+      </aside>
+      <Overlay>
 
-	return (
-		<S.Home>       
-			<Menu active={RoutePath.HOME} navItems={navigationItems} />     
-			<S.HomeContent>
-				<header>
-					<S.HomeHeaderDetails>
-						<div>
-							<S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
-							<S.HomeHeaderDetailsDate>
-								{dateDescription}
-							</S.HomeHeaderDetailsDate>
-						</div>
-						<S.HomeHeaderDetailsSearch>
-							<Search />
-							<input type="text" placeholder="Procure pelo sabor" />
-						</S.HomeHeaderDetailsSearch>
-					</S.HomeHeaderDetails>
-				</header>
-				<div>
-					<S.HomeProductTitle>
-						<b>Pizzas</b>
-					</S.HomeProductTitle>
-					<S.HomeProductList>
-					<ProductItemList>					
-					</ProductItemList>
-					</S.HomeProductList>
-				</div>
-			</S.HomeContent>
-			<aside>
-			<OrderDetails />
-			</aside>
-		</S.Home>
-	);
+	  </Overlay>
+    </S.Home>
+  );
 };
 
 export default Home;
