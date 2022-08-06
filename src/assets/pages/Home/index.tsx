@@ -36,7 +36,8 @@ const Home = () => {
 						<b>Pizzas</b>
 					</S.HomeProductTitle>
 					<S.HomeProductList>
-					<ProductItemList></ProductItemList>
+					<ProductItemList>					
+					</ProductItemList>
 					</S.HomeProductList>
 				</div>
 			</S.HomeContent>
