@@ -1,14 +1,15 @@
-import { ReactComponent as Search } from "assets/icons/search.svg";
-import * as S from "./style";
 import Menu from "assets/components/Menu";
-import { RoutePath } from "types/routes";
-import { navigationItems } from "assets/data/navigation";
 import ProductItemList from "assets/components/ProductItemList";
+import { navigationItems } from "assets/data/navigation";
+import { ReactComponent as Search } from "assets/icons/search.svg";
+import { RoutePath } from "types/routes";
+import * as S from "./style";
 import { DateTime } from "luxon";
+import CheckoutSection from "assets/components/CheckoutSection";
 import OrderDetails from "assets/components/OrderDetails";
 import Overlay from "assets/components/Overlay";
-import CheckoutSection from "assets/components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({

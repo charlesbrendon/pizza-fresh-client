@@ -22,7 +22,7 @@ const Settings = () => {
         </header>
         <S.SettingsContent>
           <S.SettingsContentSidebar>
-          <NavColumn activeRoute={RoutePath.SETTINGS_TABLES} />
+          <NavColumn activeRoute={RoutePath.SETTINGS_USERS} />
           </S.SettingsContentSidebar>
           <S.SettingsContentBox>
             <S.SettingsContentBoxEmpty>
