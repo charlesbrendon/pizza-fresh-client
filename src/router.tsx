@@ -4,8 +4,8 @@ import ManageUsers from "assets/components/ManageUsers";
 import Settings from "assets/pages/Settings";
 import { Route, Routes } from "react-router-dom";
 import { RoutePath } from "types/routes";
-import Home from "./assets/pages/Home";
-import Login from "./assets/pages/Login";
+import Home from "assets/pages/Home";
+import Login from "assets/pages/Login";
 
 const Router = () => {
     return (

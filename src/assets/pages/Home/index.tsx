@@ -9,6 +9,9 @@ import CheckoutSection from "assets/components/CheckoutSection";
 import OrderDetails from "assets/components/OrderDetails";
 import Overlay from "assets/components/Overlay";
 import { useNavigate } from "react-router-dom";
+import ProductItem from "assets/components/ProductItem";
+import { products } from "assets/mocks/products";
+import { ProductResponse } from "types/Product";
 
 
 const Home = () => {
@@ -18,6 +21,7 @@ const Home = () => {
   });
   const navigate = useNavigate();
   const handleNavigation = (path: RoutePath) => navigate(path);
+  const handleSelection = (product: ProductResponse) => {};
 
   return (
     <S.Home>
@@ -47,7 +51,16 @@ const Home = () => {
             <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-            <ProductItemList children={undefined}></ProductItemList>
+            <ProductItemList>
+              {Boolean(products.length) &&
+                products.map((product, index) => (
+                  <ProductItem
+                    product={product}
+                    key={`ProductItem-${index}`}
+                    onSelect={handleSelection}
+                  />
+                ))}
+            </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
