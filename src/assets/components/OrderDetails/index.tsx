@@ -13,6 +13,15 @@ type OrderDetailsProps = {
 } & OrderDetailsType;
 
 const OrderDetails = ({ orders }: OrderDetailsProps) => {
+  const price = orders
+    .map((i) => i.product.price * i.quantity)
+    .reduce((a, b) => a + b, 0);
+
+  const [priceState, setPriceState] = useState(price);
+
+  useEffect(() => {
+    setPriceState(price);
+  }, [orders, price]);
   return (
     <S.OrderDetails>
       <S.OrderDetailsTitle>Detalhes do Pedido</S.OrderDetailsTitle>
@@ -48,7 +57,7 @@ const OrderDetails = ({ orders }: OrderDetailsProps) => {
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
                 <span>Subtotal</span>
-                <span>R$ 10.00</span>
+                <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
               <ButtonLarge value="Continue para o pagamento" />
             </S.OrderDetailsListFooter>
