@@ -1,10 +1,18 @@
-import * as S from "./style";
-import ButtonToggle from "../ButtonToggle";
-import OrderItemList from "../OrderItemList";
 import ButtonLarge from "../ButtonLarge";
+import ButtonToggle from "../ButtonToggle";
 import OrderItem from "../OrderItem";
+import OrderItemList from "../OrderItemList";
+import { HTMLAttributes, useEffect, useState } from "react";
+import { OrderItemType } from "types/OrderItemType";
+import * as S from "./style";
 
-const OrderDetails = () => {
+type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
+
+type OrderDetailsProps = {
+  orders: OrderItemType[];
+} & OrderDetailsType;
+
+const OrderDetails = ({ orders }: OrderDetailsProps) => {
   return (
     <S.OrderDetails>
       <S.OrderDetailsTitle>Detalhes do Pedido</S.OrderDetailsTitle>
@@ -22,7 +30,20 @@ const OrderDetails = () => {
               <h4>Preço</h4>
             </S.OrderDetailsListTitle>
           }
-          list={<OrderItem />} // <-
+          list={
+            Boolean(orders.length) ? (
+              orders.map((item, index) => (
+                <OrderItem
+                  product={item.product}
+                  quantity={item.quantity}
+                  observation={item.observation}
+                  key={`OrderDetails-${index}`}
+                />
+              ))
+            ) : (
+              <S.OrderDetailsListGap />
+            )
+          }
           footer={
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
@@ -31,7 +52,7 @@ const OrderDetails = () => {
               </S.OrderDetailsListFooterRow>
               <ButtonLarge value="Continue para o pagamento" />
             </S.OrderDetailsListFooter>
-            }
+          }
         />
       </S.OrderDetailsList>
     </S.OrderDetails>

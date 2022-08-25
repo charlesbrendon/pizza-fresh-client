@@ -1,18 +1,18 @@
-import Menu from "assets/components/Menu";
-import ProductItemList from "assets/components/ProductItemList";
-import { navigationItems } from "assets/data/navigation";
-import { ReactComponent as Search } from "assets/icons/search.svg";
-import { RoutePath } from "types/routes";
-import * as S from "./style";
+import Menu from "../../components/Menu";
 import { DateTime } from "luxon";
-import CheckoutSection from "assets/components/CheckoutSection";
-import OrderDetails from "assets/components/OrderDetails";
-import Overlay from "assets/components/Overlay";
+import { ReactComponent as Search } from "assets/icons/search.svg";
+import * as S from "./style";
+import { RoutePath } from "types/routes";
+import { navigationItems } from "../../data/navigation";
+import ProductItemList from "../../components/ProductItemList";
+import ProductItem from "../../components/ProductItem";
+import OrderDetails from "../../components/OrderDetails";
+import Overlay from "../../components/Overlay";
+import CheckoutSection from "../../components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
-import ProductItem from "assets/components/ProductItem";
-import { products } from "assets/mocks/products";
+import { products } from "../../mocks/products";
+import { orders } from "../../mocks/orders";
 import { ProductResponse } from "types/Product";
-
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -65,11 +65,11 @@ const Home = () => {
         </div>
       </S.HomeContent>
       <aside>
-        <OrderDetails />
+        <OrderDetails orders={orders} />
       </aside>
-      <Overlay>
-        <CheckoutSection />
-      </Overlay>
+      {/* <Overlay>
+                <CheckoutSection />
+            </Overlay> */}
     </S.Home>
   );
 };
