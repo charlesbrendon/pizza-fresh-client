@@ -1,12 +1,38 @@
-import OrderConfirmation from "assets/components/OrderConfirmation";
-import * as S from "./style";
+import { HTMLAttributes, useState } from "react";
+import CheckboxIcon from "../CheckboxIcon";
+import OrderConfirmation from "../OrderConfirmation";
 
-const CheckoutSection = () => {
+import { ReactComponent as Card } from "assets/icons/credit-card.svg";
+import { ReactComponent as Cash } from "assets/icons/wallet.svg";
+
+import * as S from "./style";
+import { OrderItemType } from "types/OrderItemType";
+
+type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
+
+type CheckoutSectionProps = {
+  orders: OrderItemType[];
+  onOrdersChange: (orders: OrderItemType[]) => void;
+  onCloseSection: () => void;
+} & CheckoutSectionType;
+
+const CheckoutSection = ({
+  orders,
+  onOrdersChange,
+  onCloseSection,
+}: CheckoutSectionProps) => {
+  const [closing, setClosing] = useState<boolean>(false);
+
+  const handleCloseSection = () => {
+    setClosing(true);
+    setTimeout(onCloseSection, 800);
+  };
+
   return (
-    <S.CheckoutSection closing={false}>
+    <S.CheckoutSection closing={closing}>
       <S.CheckoutSectionConfirmation>
-        <S.BackIcon />
-        <OrderConfirmation />
+        <S.BackIcon onClick={handleCloseSection} />
+        <OrderConfirmation orders={orders} onOrdersChange={onOrdersChange} />
       </S.CheckoutSectionConfirmation>
       <S.CheckoutSectionPayment>
         <S.CheckoutSectionPaymentHead>Pagamento</S.CheckoutSectionPaymentHead>
@@ -19,8 +45,8 @@ const CheckoutSection = () => {
           </S.CheckoutSectionPaymentFormTitle>
           <S.PaymentForm>
             <S.PaymentFormCheckbox>
-              {"Componente CheckboxIcon"}
-              {"Componente CheckboxIcon"}
+              <CheckboxIcon active={false} value="Cartão" icon={<Card />} />
+              <CheckboxIcon active={false} value="Dinheiro" icon={<Cash />} />
             </S.PaymentFormCheckbox>
             <>
               <S.PaymentFormGroup>
@@ -39,7 +65,7 @@ const CheckoutSection = () => {
                   type="text"
                   name="card"
                   id="card"
-                  placeholder="5369 7854 5454 3154"
+                  placeholder="5379 7546 5733 3562"
                 />
               </S.PaymentFormGroup>
 
