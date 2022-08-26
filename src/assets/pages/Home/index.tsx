@@ -11,7 +11,6 @@ import Overlay from "../../components/Overlay";
 import CheckoutSection from "../../components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
 import { products } from "../../mocks/products";
-import { orders } from "../../mocks/orders";
 import { ProductResponse } from "types/Product";
 import { OrderType } from "types/orderType";
 import { useState } from "react";
@@ -44,6 +43,10 @@ const Home = () => {
     setOrders(list);
   };
 
+  const handleRemoveOrderItem = (id: string) => {
+    const filtered = orders.filter((i) => i.product.id != id);
+    setOrders(filtered);
+  };
 
   return (
     <S.Home>
@@ -91,6 +94,7 @@ const Home = () => {
           orders={orders}
           onChangeActiveOrderType={(data) => setActiverOrderType(data)}
           activeOrderType={activeOrderType}
+          onRemoveItem={handleRemoveOrderItem}
         />
       </aside>
       {/* <Overlay>
