@@ -99,6 +99,7 @@ const Home = () => {
           onChangeActiveOrderType={(data) => setActiverOrderType(data)}
           activeOrderType={activeOrderType}
           onRemoveItem={handleRemoveOrderItem}
+          selectedTable={selectedTable}
         />
       </aside>
       {proceedToPayment && (
@@ -106,7 +107,10 @@ const Home = () => {
           <CheckoutSection
             orders={orders}
             onOrdersChange={(data) => setOrders(data)}
+            onChangeActiveOrderType={(data) => setActiverOrderType(data)}
+            activeOrderType={activeOrderType}
             onCloseSection={() => setProceedToPayment(false)}
+            selectedTable={selectedTable}          
           />
         </Overlay>
       )}
