@@ -29,6 +29,7 @@ const Home = () => {
   );
 
   const [orders, setOrders] = useState<OrderItemType[]>([]);
+  const [selectedTable, setSelectedTable] = useState<number | undefined>();
   const [proceedToPayment, setProceedToPayment] = useState<boolean>(false);
 
   const handleNavigation = (path: RoutePath) => navigate(path);
@@ -77,7 +78,7 @@ const Home = () => {
             <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-            <ProductItemList>
+            <ProductItemList onSelectTable={setSelectedTable}>
               {Boolean(products.length) &&
                 products.map((product, index) => (
                   <ProductItem

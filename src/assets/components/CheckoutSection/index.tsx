@@ -1,10 +1,8 @@
 import { HTMLAttributes, useState } from "react";
 import CheckboxIcon from "../CheckboxIcon";
 import OrderConfirmation from "../OrderConfirmation";
-
 import { ReactComponent as Card } from "assets/icons/credit-card.svg";
 import { ReactComponent as Cash } from "assets/icons/wallet.svg";
-
 import * as S from "./style";
 import { OrderItemType } from "types/OrderItemType";
 
@@ -12,12 +10,14 @@ type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
 
 type CheckoutSectionProps = {
   orders: OrderItemType[];
+  selectedTable?: number;
   onOrdersChange: (orders: OrderItemType[]) => void;
   onCloseSection: () => void;
 } & CheckoutSectionType;
 
 const CheckoutSection = ({
   orders,
+  selectedTable,
   onOrdersChange,
   onCloseSection,
 }: CheckoutSectionProps) => {
@@ -65,7 +65,7 @@ const CheckoutSection = ({
                   type="text"
                   name="card"
                   id="card"
-                  placeholder="5379 7546 5733 3562"
+                  placeholder="6789 8654 9793 5186"
                 />
               </S.PaymentFormGroup>
 
@@ -76,12 +76,12 @@ const CheckoutSection = ({
                     type="text"
                     name="card"
                     id="validity"
-                    placeholder="09/2023"
+                    placeholder="09/2025"
                   />
                 </S.PaymentFormHalfItem>
                 <S.PaymentFormHalfItem>
                   <label htmlFor="cvv">CVV</label>
-                  <input type="text" name="cvv" id="cvv" placeholder="218" />
+                  <input type="text" name="cvv" id="cvv" placeholder="512" />
                 </S.PaymentFormHalfItem>
               </S.PaymentFormHalf>
             </>
@@ -103,7 +103,7 @@ const CheckoutSection = ({
                 id="table"
                 placeholder="01"
                 disabled
-                value={""}
+                value={selectedTable}
               />
             </S.PaymentActionsDetailsTableNumber>
           </S.PaymentActionsDetails>
