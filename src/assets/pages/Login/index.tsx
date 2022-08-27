@@ -1,16 +1,43 @@
+import { useMutation } from "@tanstack/react-query";
 import BoxLogin from "assets/components/BoxLogin";
+import { LocalStorageHelper } from "assets/helpers/LocalStorageHelper";
+import { AuthService } from "assets/services/AuthService";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ErrorResponse } from "types/api/error";
+import { Login as LoginData, LoginResponse } from "types/api/login";
+import { User } from "types/api/user";
+import { LocalStorageKeys } from "types/LocalStorageKeys";
 import { RoutePath } from "types/routes";
 import * as S from "./style";
 
 const Login = () => {
-	const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = () => {
+  const mutation = useMutation(AuthService.login, {
+    onSuccess: (data: LoginResponse & ErrorResponse) => {
+      if (data.statusCode) {
+        setErrorMessage(data.message);
+        return;
+      }
+      if (data.token && data.user) {
+        LocalStorageHelper.set<string>(LocalStorageKeys.TOKEN, data.token);
+        LocalStorageHelper.set<User>(LocalStorageKeys.USER, data.user);
         navigate(RoutePath.HOME);
-    }
+      }
+      setErrorMessage("Tente novamente!");
+    },
+
+    onError: () => {
+      setErrorMessage("Ocorreu um erro durante a requisição");
+    },
+  });
+
+  const handleSubmit = (data: LoginData) => {
+    mutation.mutate(data);
+    setErrorMessage("");
+  };
 
   return (
     <S.Login>
