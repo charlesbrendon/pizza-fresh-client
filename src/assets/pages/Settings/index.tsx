@@ -1,13 +1,18 @@
 import { RoutePath } from "types/routes";
 import Menu from "assets/components/Menu";
 import { navigationItems } from "assets/data/navigation";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import NavColumn from "assets/components/NavColumn";
 
 const Settings = () => {
-    const navigate = useNavigate();
-    const handleNavigation = (path: RoutePath) => navigate(path);
+  const navigate = useNavigate();
+  const handleNavigation = (path: RoutePath) => navigate(path);
+  const { pathname } = useLocation();
+
+  const splitterPath = (path: string) => path.split("/").pop() as RoutePath;
+  const path = splitterPath(pathname);
+
   return (
     <S.Settings>
       <Menu
@@ -22,13 +27,16 @@ const Settings = () => {
         </header>
         <S.SettingsContent>
           <S.SettingsContentSidebar>
-          <NavColumn activeRoute={RoutePath.SETTINGS_PRODUCTS} />
+            <NavColumn activeRoute={path} />
           </S.SettingsContentSidebar>
           <S.SettingsContentBox>
-            <S.SettingsContentBoxEmpty>
-              Selecione uma categoria
-            </S.SettingsContentBoxEmpty>
-            <Outlet />
+            {path === splitterPath(RoutePath.SETTINGS) ? (
+              <S.SettingsContentBoxEmpty>
+                Selecione uma categoria
+              </S.SettingsContentBoxEmpty>
+            ) : (
+              <Outlet />
+            )}
           </S.SettingsContentBox>
         </S.SettingsContent>
       </S.SettingsPage>
