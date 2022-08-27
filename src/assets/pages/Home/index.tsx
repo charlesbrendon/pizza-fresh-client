@@ -18,6 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QueryKey } from "types/QueryKey";
 import { ProductService } from "assets/services/ProductService";
 import { TableService } from "assets/services/TableService";
+import { Auth } from "assets/helpers/Auth";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -77,7 +78,7 @@ const Home = () => {
         active={RoutePath.HOME}
         navItems={navigationItems}
         onNavigate={handleNavigation}
-        onLogout={() => navigate(RoutePath.LOGIN)}
+        onLogout={Auth.logout}
       />
       <S.HomeContent>
         <header>
